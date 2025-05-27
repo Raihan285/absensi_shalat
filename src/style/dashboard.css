@@ -53,12 +53,12 @@ header {
     gap: 20px;
 }
 
-a img {
+.a img {
     width: 30px;
     height: 30px;
 }
 
-a {
+.a {
     color: white;
     display: flex;
     align-items: center;
@@ -106,7 +106,7 @@ a {
     color: #ffffffbc;
 }
 
-.menu-1 a {
+.menu-1 .a {
     text-decoration: none;
     color: white;
     padding: 10px 20px;
@@ -118,7 +118,7 @@ a {
     margin-right: 42px;
 }
 
-.menu a:hover {
+.menu .a:hover {
     background-color: #3d5a1a9a;
     border-radius: 10px;
     transition: 0.3s ease-in-out;
@@ -132,7 +132,7 @@ a {
     -o-transition: 0.3s ease-in-out;
 }
 
-.menu a:active {
+.menu .a:active {
     background-color: #3d5a1a9a;
     border-radius: 10px;
 }
@@ -220,8 +220,12 @@ a {
     font-weight: bold;
 }
 
-.kelas div h4 {
+.kelas a div h4 {
     font-size: 18px;
+}
+
+.a-kelas {
+    text-decoration: none;
 }
 
 .two-circle:nth-child(1) {
