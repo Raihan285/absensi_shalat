@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    overflow: hidden;
+    display: flex;
+}
+
+.top-left-login {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.login-left {
+    width: 50%;
+    background-image: linear-gradient(to right, #7DB23C, #5C901C);
+    height: 100vh;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.login-right {
+    width: 50%;
+    height: 100vh;
+}
+
+.top-left-login {
+    background-color: white;
+    width: 270px;
+    padding-left: 30px;
+    border-bottom-right-radius: 40px;
+}
+
+.sambutan {
+    width: 418px;
+    text-align: justify;
+    background-color: #3D5A1A;
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    margin: auto;
+    margin-top: 150px;
+    top: 150px;
+    left: 200px;
+}
+
+.kepsek {
+    position: absolute;
+    bottom: 0;
+    top: 310px;
+}
+
+input {
+    width: 300px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    text-align: left;
+}
+
+button {
+    padding: 10px 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: #7CB438;
+    width: 400px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    box-shadow: #cdcdcc 10px 5px 18px 0px;
+    margin: auto;
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 60%;
+    right: 10%;
+}

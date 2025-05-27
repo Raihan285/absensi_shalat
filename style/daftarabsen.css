@@ -1,0 +1,120 @@
+/* main datra absen */
+
+table {
+    border: 1px solid #3d5a1a71;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 20px 40px;
+    border: 1px solid #3d5a1a71;
+    text-align: center;
+}
+
+th {
+    color: #3d5a1ae1;
+    background-color: #7cb438c2;
+}
+
+.hari_absen {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 70px;
+}
+
+.hari_absen h3 {
+    margin-right: 770px;
+}
+
+.Status-sholat {
+    background-color: #7cb438c2;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.Status-sholat:hover {
+    background-color: #7cb438ea;
+    box-shadow: 0 0 15px #7cb438c2;
+    transition: 0.2s ease-in-out;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+}
+
+.Status-izin {
+    background-color: #aeb438;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.Status-izin:hover {
+    background-color: #bec62e;
+    box-shadow: 0 0 15px #aeb438;
+    transition: 0.2s ease-in-out;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+}
+
+.Status-alpa {
+    background-color: rgba(255, 0, 0, 0.637);
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.Status-alpa:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.637);
+    transition: 0.2s ease-in-out;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+}
+
+
+.main-dashboard {
+    margin-bottom: 70px;
+}
+/* end main daftar absen */
