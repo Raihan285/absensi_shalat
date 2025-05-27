@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absen</title>
-    <link rel="shortcut icon" href="image/logokartika_400x400-2 3.png" type="image/x-icon">
-    <link rel="stylesheet" href="style/dashboard.css">
-    <link rel="stylesheet" href="style/absen.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Absen</title>
+  <link rel="shortcut icon" href="image/logokartika_400x400-2 3.png" type="image/x-icon">
+  <link rel="stylesheet" href="src/style/dashboard.css">
+  <link rel="stylesheet" href="src/style/absen.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="header">
                 <h1>SMK KARTIKA XX-1</h1>
-                <h2>Qaisar</h2>
             </div>
             <div class="menu">
                 <div class="menu-1">
@@ -53,46 +52,48 @@
         </nav>
     </header>
 
-    <main>
-        <div class="nav-header">
-            <div style="color: black;">
-                <h2>Dashboard</h2>
-                <p style="color: rgba(0, 0, 0, 0.556);">Daftar absen siswa</p>
-            </div>
+  <main>
+    <div class="nav-header">
+      <div style="color: black;">
+        <h2>Dashboard</h2>
+        <p style="color: rgba(0, 0, 0, 0.556);">Daftar absen siswa</p>
+      </div>
 
-            <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
-                <div style="color: black;" class="search">
-                    <input type="search" placeholder="Cari Siswa">
-                </div>
-                <div class="header-2">
-                    <div class="circle">
-                        <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="image/rekapitulasi.png" alt="">
-                    </div>
-                    <div>
-                        <h4>Qaisar Al Zikra</h4>
-                        <p>Siswa</p>
-                    </div>
-                </div>
-            </div>
+      <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
+        <div style="color: black;" class="search">
+          <input type="search" placeholder="Cari Siswa">
         </div>
-
-        <div class="container-absen">
-            <div class="camera">
-                <div></div>
-            </div>
-
-            <div class="input-absen" style="margin: auto; display: flex; justify-content: center; align-items: center; margin-top: 20px; flex-direction: column;">
-                <input type="text" placeholder="NIS Kamu">
-                <select id="buah" name="buah">
-                    <option value="sholat">Sholat</option>
-                    <option value="izin">Izin</option>
-                    <option value="alpha">Alpha</option>
-                </select>
-                <button>Kirim</button>
-            </div>
+        <div class="header-2">
+          <div class="circle">
+            <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="image/rekapitulasi.png" alt="">
+          </div>
+          <div>
+            <h4>Qaisar Al Zikra</h4>
+            <p>Siswa</p>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+
+    <div class="container-absen">
+      <div class="camera">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
+      </div>
+
+      <div class="input-absen">
+        <input type="text" id="nisInput" placeholder="NIS Kamu">
+        <select id="statusSelect">
+          <option value="sholat">Sholat</option>
+          <option value="izin">Izin</option>
+          <option value="alpha">Alpha</option>
+        </select>
+        <button id="kirimButton">Kirim</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="src/index.js"></script>
+  <script src="src/js/kamera.js"></script>
 </body>
-
-<script src="src/index.js"></script>
 </html>
