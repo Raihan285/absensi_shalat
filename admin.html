@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Panel - Input Siswa</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -100,26 +102,8 @@
       </tbody>
     </table>
   </div>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+   <script src="src/database.js"></script>
   <script>
-    // GANTI DENGAN KONFIGURASI FIREBASE MILIKMU
-   const firebaseConfig = {
-    apiKey: "AIzaSyClAjQVFelOa9UcRKhwgYvoHkDyhQ0tvkM",
-    authDomain: "absensi-sholat.firebaseapp.com",
-    projectId: "absensi-sholat",
-    storageBucket: "absensi-sholat.firebasestorage.app",
-    messagingSenderId: "1003312770716",
-    appId: "1:1003312770716:web:5ee8515f631c6d5d174759",
-    measurementId: "G-7EXTXQ6CFT"
-  };
-
-      firebase.initializeApp(firebaseConfig); // ✅ benar untuk compat
-      const db = firebase.firestore();        // ✅ benar untuk compat
-
-
     // Simpan data siswa
     document.getElementById('formSiswa').addEventListener('submit', async (e) => {
       e.preventDefault();

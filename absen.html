@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="src/style/dashboard.css">
   <link rel="stylesheet" href="src/style/absen.css">
   <link rel="stylesheet" href="/src/style/daftarabsen.css">
+
+<!-- Firebase SDK compat version -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+
 </head>
 <body>
     <header>
@@ -126,19 +132,26 @@
         <canvas id="canvas" width="320" height="240"></canvas>
       </div>
 
-      <div class="input-absen">
-        <input type="text" id="nisInput" placeholder="NIS Kamu">
-        <select id="statusSelect">
-          <option value="sholat">Sholat</option>
-          <option value="izin">Izin</option>
-          <option value="alpha">Alpha</option>
-        </select>
-        <button id="kirimButton">Kirim</button>
-      </div>
+
+<form id="absenForm" class="input-absen" >
+  <input type="text" id="nis" placeholder="NIS Kamu">
+  <input type="text" id="lokasi" placeholder="Lokasi">
+  <select id="status">
+    <option value="Sholat">Sholat</option>
+    <option value="Izin">Izin</option>
+    <option value="Alpha">Alpha</option>
+  </select>
+  <button id="kirimButton" type="submit">Kirim</button>
+</form>
+   
     </div>
   </main>
 
   <script src="src/index.js"></script>
   <script src="src/js/kamera.js"></script>
+  <script src="src/absen-get.js"></script>
+  <script src="src/database.js"></script>
+ 
+
 </body>
 </html>
