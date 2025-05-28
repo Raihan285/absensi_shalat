@@ -13,8 +13,19 @@ body {
 
 /* navigasi sticky */
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 6;
+    background-color: #7cb438;
+    box-shadow: -2px 0 20px #7cb438d4;
+    display: none;
+}
+
 header {
-    max-width: 300px;
+    max-width: 30%;
     width: max-content;
     background-color: #7CB438;
     height: 100vh;
@@ -36,13 +47,17 @@ header {
     background-color: #3D5A1A;
     color: white;
     font-weight: 34px;
-    width: 241px;
-    position: absolute;
+    margin-bottom: 0;
+    margin-top: 65%;
     left: 0;
     bottom: 0;
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+#botton-menu {
+    display: none;
 }
 
 .header-2 {
@@ -85,6 +100,10 @@ header {
     margin-top: 20px;
     position: relative;
     margin-bottom: 50px;
+}
+
+main {
+    width: 100vw;
 }
 
 .circle {
@@ -133,8 +152,21 @@ header {
 }
 
 .menu .a:active {
-    background-color: #3d5a1a9a;
+    background-color: 3d5a1a9a;
     border-radius: 10px;
+}
+
+.close {
+    height: 50px;
+    width: 50px;
+}
+
+.close a {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 .nav-header {
@@ -146,12 +178,12 @@ header {
     background-color: rgba(255, 255, 255, 0.932);
     box-shadow: 4px 4px 4px 4px rgba(55, 55, 55, 0.13);
     filter: blur();
-    width: 79vw;
     padding: 20px 20px;
     position: sticky;
     top: 0;
     -webkit-filter: blur();
     z-index: 5;
+
 }
 
 .search input {
@@ -261,4 +293,120 @@ header {
     position: relative;
 }
 
+.search-handphone input {
+    margin-left: 50px;
+    margin-top: 40px;
+    padding: 10px 10px;
+    width: 250px;
+    background-color: rgba(139, 203, 61, 0.248);
+    color: black;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+
 /* end main dashboard */
+
+/* responsif */
+@media (min-width: 50px) {
+        header {
+        display: none;
+    }
+    .botton-menu {
+        display: block;
+    }
+
+    .search-handphone {
+        display: block;
+    }
+    .search {
+        display: none;
+    }
+    table {
+        width:  90%;
+        table-layout: fixed;
+    }
+    .header-2 {
+        display: none;
+    }
+        .hari_absen h3 {
+        margin: auto;
+    }
+
+    th,td {
+        padding: 5px;
+    }
+}
+@media (min-width: 576px) {
+    header {
+        display: none;
+    }
+    .botton-menu {
+        display: block;
+    }
+
+    .search-handphone {
+        display: block;
+    }
+    .search {
+        display: none;
+    }
+        .header-2 {
+        display: flex;
+    }
+    table {
+        width:  90%;
+        table-layout: fixed;
+    }
+        .hari_absen h3  {
+        margin: auto;
+
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        display: none;
+    }
+    .search-handphone {
+        display: block;
+    }
+    .search {
+        display: none;
+    }
+    table {
+        width: 80%;
+        table-layout: fixed;
+    }
+    .header-2 {
+        display: flex;
+    }
+    .hari_absen h3 {
+        margin: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    header {
+        display: flex;
+    }
+    .botton-menu {
+        display: none;
+    }
+    .search-handphone {
+        display: none;
+    }
+    .search {
+        display: block;
+    }
+    .header-2 {
+        display: flex;
+    }
+    table {
+        width: 90%;
+        table-layout: fixed;
+    }
+}
