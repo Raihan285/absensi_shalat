@@ -27,25 +27,26 @@
             <div class="form-login">
                 <img src="image/logokartika_400x400-2 3.png" alt="">
     
-                <div class="form-input">
-                    <div class="input">
-                        <b>USERNAME :</b>
-                        <input type="text" placeholder="USERNAME">
-                    </div>
-        
-                    <div class="input">                
-                        <b>PASSWORD</b>
-                        <input type="text" placeholder="PASSWORD">
-                    </div>
-                </div>
-    
-                <a href="dashboard.html">
-                    <button type="submit">
-                        LOGIN
-                    </button>
-                </a>
-            </div>
+               <form id="loginForm">
+  <div class="form-input"> 
+    <div class="input">
+      <b>Nama:</b> 
+      <input type="text" id="nama" name="nama" placeholder="Masukkan Nama" required>
+    </div>
+
+    <div class="input">                
+      <b>NIS:</b> 
+      <input type="text" id="nis" name="nis" placeholder="Masukkan NIS" required>
+    </div>
+
+    <div class="input">
+      <button type="submit">Login</button>
+    </div>
+  </div>
+</form>
+
         </div>
     </div>
+    <script type="module" src="src/login.js"></script>
 </body>
 </html>
