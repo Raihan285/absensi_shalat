@@ -307,15 +307,12 @@ main {
     -o-border-radius: 15px;
 }
 
-table {
-    overflow-x: auto;
-}
 
 /* end main dashboard */
 
 /* responsif */
-@media (max-width: 576px) {
-    header {
+@media (min-width: 50px) {
+        header {
         display: none;
     }
     .botton-menu {
@@ -329,12 +326,21 @@ table {
         display: none;
     }
     table {
-        width: 50%;
-        overflow-x: auto;
+        width:  90%;
+        table-layout: fixed;
+    }
+    .header-2 {
+        display: none;
+    }
+        .hari_absen h3 {
+        margin: auto;
+    }
+
+    th,td {
+        padding: 5px;
     }
 }
-
-@media (max-width: 768px) {
+@media (min-width: 576px) {
     header {
         display: none;
     }
@@ -348,9 +354,16 @@ table {
     .search {
         display: none;
     }
+        .header-2 {
+        display: flex;
+    }
     table {
-        width: 50%;
-        overflow-x: auto;
+        width:  90%;
+        table-layout: fixed;
+    }
+        .hari_absen h3  {
+        margin: auto;
+
     }
 }
 
@@ -365,8 +378,14 @@ table {
         display: none;
     }
     table {
-        width: 50px;
-        overflow-x: auto;
+        width: 80%;
+        table-layout: fixed;
+    }
+    .header-2 {
+        display: flex;
+    }
+    .hari_absen h3 {
+        margin: auto;
     }
 }
 
@@ -383,8 +402,11 @@ table {
     .search {
         display: block;
     }
+    .header-2 {
+        display: flex;
+    }
     table {
-        width: 50px;
-        overflow-x: auto;
+        width: 90%;
+        table-layout: fixed;
     }
 }
