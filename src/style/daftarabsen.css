@@ -127,10 +127,18 @@ th {
     th, td {
         padding: 10px 10px;
     }
+    .hari_absen h3 {
+        width: 200px;
+        margin: auto;
+    }
 }
 
 @media (min-width: 992px) {
     th, td {
         padding: 20px 40px;
+    }
+    .hari_absen h3 {
+        width: 200px;
+        margin: auto;
     }
 }
