@@ -25,13 +25,14 @@ body {
 }
 
 header {
-    max-width: 30%;
-    width: max-content;
+    max-width: 25%;
+    width: 22.4%;
     background-color: #7CB438;
     height: 100vh;
     position: sticky;
     top: 0; /* Menempel di bagian atas parent .section */
     z-index: 1;
+    overflow-x: hidden;
 }
 
 .header {
@@ -43,12 +44,12 @@ header {
 }
 
 .header-1 {
+    width: 100%;
     padding: 30px 20px;
     background-color: #3D5A1A;
     color: white;
     font-weight: 34px;
-    margin-bottom: 0;
-    margin-top: 65%;
+    position: absolute;
     left: 0;
     bottom: 0;
     display: flex;
