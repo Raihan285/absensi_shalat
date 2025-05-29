@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="src/style/dashboard.css">
     <link rel="stylesheet" href="src/style/daftarabsen.css">
     <link rel="shortcut icon" href="image/logokartika_400x400-2 3.png" type="image/x-icon">
+       <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <header>
@@ -121,9 +123,10 @@
 
         <div class="main-dashboard">
             <div class="hari_absen">
-                <h3>Selasa 06 Mei 2025</h3>
+                <h3 id="tanggalBrapa"></h3>
                 <div>
                     <table>
+                        <thead>
                         <tr>
                             <th>NIS</th>
                             <th>Nama</th>
@@ -132,162 +135,70 @@
                             <th>Tanggal</th>
                             <th>Status</th>
                         </tr>
+                        </thead>
+                        <tbody id="absenList">
 
-                        <tr>
-                            <td>23014</td>
-                            <td>Qaisar Al Zikra</td>
-                            <td>XI RPL</td>
-                            <td>Masjid Nurul Ilmu</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-sholat">
-                                    <p>Sholat</p>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>23001</td>
-                            <td>Ahmad Rantisi</td>
-                            <td>XI RPL</td>
-                            <td>Camp Molagina</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-izin">
-                                    <p>Izin</p>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>23003</td>
-                            <td>Firmansyah Fath Al-Rasyidi</td>
-                            <td>XI RPL</td>
-                            <td>Kantin</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-alpa">
-                                    <p>Alpha</p>
-                                </div>
-                            </td>
-                        </tr>
+                        </tbody>        
                     </table>
                 </div>
             </div>
 
-            <div class="hari_absen">
-                <h3>Senin 05 Mei 2025</h3>
-                <div>
-                    <table>
-                        <tr>
-                            <th>NIS</th>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Lokasi</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                        </tr>
+           
 
-                        <tr>
-                            <td>23017</td>
-                            <td>Raihan Alif</td>
-                            <td>XI RPL</td>
-                            <td>Masjid Nurul Ilmu</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-sholat">
-                                    <p>Sholat</p>
-                                </div>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>23002</td>
-                            <td>Chandra Valentio Dammes</td>
-                            <td>XI RPL</td>
-                            <td>Rumah Sakit</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-izin">
-                                    <p>Izin</p>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>23015</td>
-                            <td>Muhammad Fathan</td>
-                            <td>XI RPL</td>
-                            <td>Lapangan Basket</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-alpa">
-                                    <p>Alpha</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="hari_absen">
-                <h3>Jum'at 02 Mei 2025</h3>
-                <div>
-                    <table>
-                        <tr>
-                            <th>NIS</th>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Lokasi</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                        </tr>
-
-                        <tr>
-                            <td>23017</td>
-                            <td>Raihan Alif</td>
-                            <td>XI RPL</td>
-                            <td>Masjid Nurul Ilmu</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-sholat">
-                                    <p>Sholat</p>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>23002</td>
-                            <td>Chandra Valentio Dammes</td>
-                            <td>XI RPL</td>
-                            <td>Rumah Sakit</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-izin">
-                                    <p>Izin</p>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>23015</td>
-                            <td>Muhammad Fathan</td>
-                            <td>XI RPL</td>
-                            <td>Lapangan Basket</td>
-                            <td>6 Mei 2025</td>
-                            <td>
-                                <div class="Status-alpa">
-                                    <p>Alpha</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
 
         </div>
     </main>
 </body>
 
 <script src="src/index.js"></script>
+<script src="src/database.js"></script>
+<script>
+     // Fungsi untuk menentukan class CSS berdasarkan status
+function statusGet(status) {
+  if (status === "Sholat") {
+    return "Status-sholat";
+  } else if (status === "Izin") {
+    return "Status-izin";
+  } else {
+    return "Status-alpa"; // Default jika tidak ada status yang cocok
+  }
+}
+
+// Fungsi untuk menampilkan absensi dan tanggal terbaru
+async function loadAbsen() {
+  const list = document.getElementById('absenList');
+  const tanggalBrapa = document.getElementById('tanggalBrapa');
+  list.innerHTML = "";
+
+  // Ambil data absensi, urutkan berdasarkan tanggal terbaru
+  const snapshot = await db.collection('absen')
+    .orderBy('tanggal', 'desc')
+    .get();
+
+  if (!snapshot.empty) {
+    const tanggalTerbaru = snapshot.docs[0].data().tanggal;
+    tanggalBrapa.innerText = `Tanggal: ${tanggalTerbaru}`;
+  } else {
+    tanggalBrapa.innerText = "Belum ada data absensi.";
+  }
+
+  // Tampilkan semua data absensi
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const row = `<tr>
+      <td>${data.siswaNis}</td>
+      <td>${data.nama}</td>
+      <td>${data.kelas}</td>
+      <td>${data.lokasi || '-'}</td>
+      <td>${data.tanggal}</td>
+      <td><div class="${statusGet(data.status)}">${data.status}</div></td>
+    </tr>`;
+    list.innerHTML += row;
+  });
+}
+
+window.onload = loadAbsen;
+
+</script>
 </html>

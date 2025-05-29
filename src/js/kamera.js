@@ -15,8 +15,8 @@ kirimButton.addEventListener("click", () => {
   const context = canvas.getContext("2d");
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  const nis = document.getElementById("nisInput").value;
-  const status = document.getElementById("statusSelect").value;
+  const nis = document.getElementById("nis").value;
+  const status = document.getElementById("status").value;
   const imageData = canvas.toDataURL("image/png");
 
   // Kirim ke database/server jika diperlukan
@@ -24,5 +24,5 @@ kirimButton.addEventListener("click", () => {
   console.log("Status:", status);
   console.log("Foto base64:", imageData);
 
-  alert("Data berhasil ditangkap! (simulasi)");
+ 
 });
