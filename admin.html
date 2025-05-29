@@ -102,6 +102,9 @@
       </tbody>
     </table>
   </div>
+
+  <button onclick="generateAbsenHarian()">Generate Absen Hari Ini</button>
+
    <script src="src/database.js"></script>
   <script>
     // Simpan data siswa
@@ -139,7 +142,38 @@
         list.innerHTML += row;
       });
     }
+
+ async function generateAbsenHarian() {
+  const today = new Date();
+  const tanggal = `${today.getDate().toString().padStart(2, '0')}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getFullYear()}`;
+
+  const siswaSnapshot = await db.collection('siswa').get();
+
+  siswaSnapshot.forEach(async (doc) => {
+    const siswa = doc.data();
+    const docId = `${tanggal}_${siswa.nis}`;
+
+    // Cek apakah dokumen sudah ada
+    const existingDoc = await db.collection('absen').doc(docId).get();
+
+    if (!existingDoc.exists) {
+      // Buat dokumen baru dengan ID yang konsisten
+      await db.collection('absen').doc(docId).set({
+        siswaNis: siswa.nis,
+        nama: siswa.nama,
+        kelas: siswa.kelas,
+        tanggal: tanggal,
+        status: "Alpha",
+        lokasi: "",
+        bukti: ""
+      });
+    }
+  });
+}
+
+
       window.onload = loadSiswa;
+
   </script>
 </body>
 </html>

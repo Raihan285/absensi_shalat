@@ -1,36 +1,40 @@
-
-
 document.getElementById('absenForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const nis = parseInt(document.getElementById('nis').value);
-    const lokasi = document.getElementById('lokasi').value;
-    const status = document.getElementById('status').value;
-    const tanggal = new Date().toISOString().split('T')[0];
+  const nis = parseInt(document.getElementById('nis').value);
+  const lokasi = document.getElementById('lokasi').value.trim();
+  const status = document.getElementById('status').value;
+  const tanggal = new Date();
 
-    try {
-      // Cari data siswa dulu
-      const siswaDoc = await db.collection("siswa").doc(String(nis)).get();
+  // Format tanggal ke DD-MM-YYYY
+  const formattedTanggal = `${tanggal.getDate().toString().padStart(2, '0')}-${(tanggal.getMonth() + 1).toString().padStart(2, '0')}-${tanggal.getFullYear()}`;
 
-      if (!siswaDoc.exists) {
-        alert("Siswa tidak ditemukan!");
-        return;
-      }
+  try {
+    // Ambil data siswa
+    const siswaDoc = await db.collection("siswa").doc(String(nis)).get();
 
-      const siswaData = siswaDoc.data();
-
-      await db.collection("absen").doc(`${tanggal}_${nis}`).set({
-        siswaNis: nis,
-        nama: siswaData.nama,
-        kelas: siswaData.kelas,
-        tanggal: tanggal,
-        lokasi: lokasi,
-        status: status
-      });
-
-      alert("Absen berhasil dikirim!");
-    } catch (err) {
-      console.error("Gagal absen:", err);
-      alert("Gagal mengirim absen.");
+    if (!siswaDoc.exists) {
+      alert("Siswa tidak ditemukan!");
+      return;
     }
-  });
+
+    const siswaData = siswaDoc.data();
+
+    // Simpan absen, dokumen unik per hari dan nis
+    await db.collection("absen").doc(`${formattedTanggal}_${nis}`).set({
+      siswaNis: nis,
+      nama: siswaData.nama,
+      kelas: siswaData.kelas,
+      tanggal: formattedTanggal,
+      lokasi: lokasi,
+      status: status,
+      bukti: "" // kamu bisa tambah nanti jika upload bukti
+    });
+
+    alert("Absen berhasil dikirim!");
+    document.getElementById('absenForm').reset();
+  } catch (err) {
+    console.error("Gagal absen:", err);
+    alert("Gagal mengirim absen.");
+  }
+});
