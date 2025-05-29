@@ -121,24 +121,24 @@ th {
     margin-bottom: 70px;
 }
 /* end main daftar absen */
-
+@media (min-width: 50px) {
+        .hari_absen h3 {
+        width: 200px;
+        margin: auto;
+    }
+        th, td {
+        padding: 5px 5px;
+    }
+}
 
 @media (min-width: 474px) {
     th, td {
         padding: 10px 10px;
-    }
-    .hari_absen h3 {
-        width: 200px;
-        margin: auto;
     }
 }
 
 @media (min-width: 992px) {
     th, td {
         padding: 20px 40px;
-    }
-    .hari_absen h3 {
-        width: 200px;
-        margin: auto;
     }
 }

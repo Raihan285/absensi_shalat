@@ -25,8 +25,7 @@ body {
 }
 
 header {
-    max-width: 25%;
-    width: 22.4%;
+    width: 25%;
     background-color: #7CB438;
     height: 100vh;
     position: sticky;
@@ -40,7 +39,7 @@ header {
     background-color: #3D5A1A;
     color: white;
     font-weight: 34px;
-    position: relative;
+    width: 100%;
 }
 
 .header-1 {
@@ -99,8 +98,7 @@ header {
     flex-direction: column;
     gap: 30px;
     margin-top: 20px;
-    position: relative;
-    margin-bottom: 50px;
+
 }
 
 main {
@@ -132,10 +130,6 @@ main {
     padding: 10px 20px;
 
     color: white;
-    display: flex;
-    align-items: center;
-    margin-left: 42px;
-    margin-right: 42px;
 }
 
 .menu .a:hover {
@@ -153,7 +147,7 @@ main {
 }
 
 .menu .a:active {
-    background-color: 3d5a1a9a;
+    background-color: #3d5a1a9a;
     border-radius: 10px;
 }
 
@@ -312,7 +306,7 @@ main {
 /* end main dashboard */
 
 /* responsif */
-@media (min-width: 50px) {
+@media (max-width: 576px) {
         header {
         display: none;
     }
@@ -340,6 +334,22 @@ main {
     th,td {
         padding: 5px;
     }
+    .container-kelas {
+            padding: 10px 10px;
+    width: 150px;
+    height: 50px;
+    background-color: #7cb438db;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    color: rgb(244, 244, 244);
+    box-shadow: 0.1px 0.1px 7px 0.1px gray;
+    }
 }
 @media (min-width: 576px) {
     header {
@@ -364,7 +374,6 @@ main {
     }
         .hari_absen h3  {
         margin: auto;
-
     }
 }
 
@@ -388,6 +397,22 @@ main {
     .hari_absen h3 {
         margin: auto;
     }
+    .container-kelas {
+            padding: 15px 15px;
+    width: 200px;
+    height: 50px;
+    background-color: #7cb438db;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    color: rgb(244, 244, 244);
+    box-shadow: 0.1px 0.1px 7px 0.1px gray;
+    }
 }
 
 @media (min-width: 992px) {
@@ -409,5 +434,21 @@ main {
     table {
         width: 90%;
         table-layout: fixed;
+    }
+    .container-kelas {
+            padding: 15px 15px;
+    width: 250px;
+    height: 100px;
+    background-color: #7cb438db;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    color: rgb(244, 244, 244);
+    box-shadow: 0.1px 0.1px 7px 0.1px gray;
     }
 }

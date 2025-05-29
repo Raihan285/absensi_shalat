@@ -28,7 +28,6 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
       tanggal: formattedTanggal,
       lokasi: lokasi,
       status: status,
-      bukti: "" // kamu bisa tambah nanti jika upload bukti
     });
 
     alert("Absen berhasil dikirim!");
