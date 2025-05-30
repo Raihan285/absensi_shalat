@@ -123,31 +123,15 @@
 
         <div class="main-dashboard">
             <div class="hari_absen">
-                <h3 id="tanggalBrapa"></h3>
-                <div>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>NIS</th>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Lokasi</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody id="absenList">
-
-                        </tbody>        
-                    </table>
-                </div>
+               <div id="absenContainer"></div>
             </div>
+              
+            
 
            
-
-
-
+        
         </div>
+
     </main>
 </body>
 
@@ -198,7 +182,76 @@ async function loadAbsen() {
   });
 }
 
-window.onload = loadAbsen;
+async function loadAbsenByTanggal() {
+  const container = document.getElementById('absenContainer');
+  container.innerHTML = "";
+
+  // Ambil semua data absen, urut berdasarkan tanggal
+  const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
+
+  // Kelompokkan data berdasarkan tanggal
+  const grouped = {};
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const tanggal = data.tanggal;
+
+    if (!grouped[tanggal]) {
+      grouped[tanggal] = [];
+    }
+
+    grouped[tanggal].push(data);
+  });
+
+  // Tampilkan satu tabel per tanggal
+  for (const tanggal in grouped) {
+    const tableHTML = `
+    <div style="margin-bottom: 50px;"">
+      <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Lokasi</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${grouped[tanggal].map(data => `
+            <tr>
+              <td>${data.siswaNis}</td>
+              <td>${data.nama}</td>
+              <td>${data.kelas}</td>
+              <td>${data.lokasi || '-'}</td>
+              <td>${data.tanggal}</td>
+              <td><div class="${statusGet(data.status)}">${data.status}</div></td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+     </div>
+    `;
+
+    container.innerHTML += tableHTML;
+  }
+}
+
+// Fungsi CSS berdasarkan status (kamu pasti sudah punya ini)
+function statusGet(status) {
+  if (status === "Sholat") return "Status-sholat";
+  else if (status === "Izin") return "Status-izin";
+  else return "Status-alpa";
+}
+
+// Jalankan saat halaman dibuka
+window.onload = async function () {
+  await loadAbsenByTanggal();  // Fungsi yang menampilkan absen berdasarkan tanggal tertentu
+  await loadAbsen();           // Fungsi yang menampilkan absen terbaru
+};
+
 
 </script>
 </html>
