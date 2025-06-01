@@ -62,6 +62,12 @@
             </div>
 
             <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
+              <select id="filterAbsen" onchange="filterAbsen()">
+                <option value="today">Hari Ini</option>
+                <option value="week">Minggu Ini</option>
+                <option value="month">Bulan Ini</option>
+              </select>
+
                 <div style="color: black;" class="search">
                     <input type="search" placeholder="Cari Siswa">
                 </div>
@@ -123,6 +129,7 @@
 
         <div class="main-dashboard">
             <div class="hari_absen">
+              <h4 id="tanggalBrapa" style="margin-top: 20px;"></h4>
                <div id="absenContainer"></div>
             </div>
               
@@ -137,121 +144,7 @@
 
 <script src="src/index.js"></script>
 <script src="src/database.js"></script>
-<script>
-     // Fungsi untuk menentukan class CSS berdasarkan status
-function statusGet(status) {
-  if (status === "Sholat") {
-    return "Status-sholat";
-  } else if (status === "Izin") {
-    return "Status-izin";
-  } else {
-    return "Status-alpa"; // Default jika tidak ada status yang cocok
-  }
-}
-
-// Fungsi untuk menampilkan absensi dan tanggal terbaru
-async function loadAbsen() {
-  const list = document.getElementById('absenList');
-  const tanggalBrapa = document.getElementById('tanggalBrapa');
-  list.innerHTML = "";
-
-  // Ambil data absensi, urutkan berdasarkan tanggal terbaru
-  const snapshot = await db.collection('absen')
-    .orderBy('tanggal', 'desc')
-    .get();
-
-  if (!snapshot.empty) {
-    const tanggalTerbaru = snapshot.docs[0].data().tanggal;
-    tanggalBrapa.innerText = `Tanggal: ${tanggalTerbaru}`;
-  } else {
-    tanggalBrapa.innerText = "Belum ada data absensi.";
-  }
-
-  // Tampilkan semua data absensi
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const row = `<tr>
-      <td>${data.siswaNis}</td>
-      <td>${data.nama}</td>
-      <td>${data.kelas}</td>
-      <td>${data.lokasi || '-'}</td>
-      <td>${data.tanggal}</td>
-      <td><div class="${statusGet(data.status)}">${data.status}</div></td>
-    </tr>`;
-    list.innerHTML += row;
-  });
-}
-
-async function loadAbsenByTanggal() {
-  const container = document.getElementById('absenContainer');
-  container.innerHTML = "";
-
-  // Ambil semua data absen, urut berdasarkan tanggal
-  const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
-
-  // Kelompokkan data berdasarkan tanggal
-  const grouped = {};
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const tanggal = data.tanggal;
-
-    if (!grouped[tanggal]) {
-      grouped[tanggal] = [];
-    }
-
-    grouped[tanggal].push(data);
-  });
-
-  // Tampilkan satu tabel per tanggal
-  for (const tanggal in grouped) {
-    const tableHTML = `
-    <div style="margin-bottom: 50px;"">
-      <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>NIS</th>
-            <th>Nama</th>
-            <th>Kelas</th>
-            <th>Lokasi</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${grouped[tanggal].map(data => `
-            <tr>
-              <td>${data.siswaNis}</td>
-              <td>${data.nama}</td>
-              <td>${data.kelas}</td>
-              <td>${data.lokasi || '-'}</td>
-              <td>${data.tanggal}</td>
-              <td><div class="${statusGet(data.status)}">${data.status}</div></td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-     </div>
-    `;
-
-    container.innerHTML += tableHTML;
-  }
-}
-
-// Fungsi CSS berdasarkan status (kamu pasti sudah punya ini)
-function statusGet(status) {
-  if (status === "Sholat") return "Status-sholat";
-  else if (status === "Izin") return "Status-izin";
-  else return "Status-alpa";
-}
-
-// Jalankan saat halaman dibuka
-window.onload = async function () {
-  await loadAbsenByTanggal();  // Fungsi yang menampilkan absen berdasarkan tanggal tertentu
-  await loadAbsen();           // Fungsi yang menampilkan absen terbaru
-};
-
-
+<script src="daftarabsen.js"></script>
+ 
 </script>
 </html>
