@@ -36,7 +36,7 @@ async function loadAbsenByTanggal() {
               <th>Nama</th>
               <th>Kelas</th>
               <th>Lokasi</th>
-              <th>Tanggal</th>
+              <th>bukti</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -47,7 +47,7 @@ async function loadAbsenByTanggal() {
                 <td>${data.nama}</td>
                 <td>${data.kelas}</td>
                 <td>${data.lokasi || '-'}</td>
-                <td>${data.tanggal}</td>
+               <td><img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;"></td>
                 <td><div class="${statusGet(data.status)}">${data.status}</div></td>
               </tr>
             `).join("")}
@@ -64,7 +64,7 @@ async function filterAbsen() {
   const filter = document.getElementById('filterAbsen').value;
   const container = document.getElementById('absenContainer');
   const tanggalBrapa = document.getElementById('tanggalBrapa');
-  container.innerHTML = "";
+  container.innerHTML = "";           
 
   const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
   const today = new Date();
@@ -114,7 +114,7 @@ async function filterAbsen() {
             <th>Nama</th>
             <th>Kelas</th>
             <th>Lokasi</th>
-            <th>Tanggal</th>
+            <th>bukti</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -125,7 +125,7 @@ async function filterAbsen() {
               <td>${data.nama}</td>
               <td>${data.kelas}</td>
               <td>${data.lokasi || '-'}</td>
-              <td>${data.tanggal}</td>
+              <td><img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;"></td>
               <td><div class="${statusGet(data.status)}">${data.status}</div></td>
             </tr>
           `).join("")}

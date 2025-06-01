@@ -6,11 +6,32 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
   const status = document.getElementById('status').value;
   const tanggal = new Date();
 
-  // Format tanggal ke DD-MM-YYYY
   const formattedTanggal = `${tanggal.getDate().toString().padStart(2, '0')}-${(tanggal.getMonth() + 1).toString().padStart(2, '0')}-${tanggal.getFullYear()}`;
 
+  // Ambil gambar dari canvas
+  const canvas = document.getElementById("canvas");
+  const imageBase64 = canvas.toDataURL("image/png");
+
   try {
-    // Ambil data siswa
+    // ✅ Upload gambar ke Cloudinary
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dqoo5xojd/image/upload";
+    const uploadPreset = "absenImage";
+
+    const formData = new FormData();
+    formData.append("file", imageBase64);
+    formData.append("upload_preset", uploadPreset);
+
+    const response = await fetch(cloudinaryUrl, {
+      method: "POST",
+      body: formData
+    });
+
+    if (!response.ok) throw new Error("Gagal upload gambar ke Cloudinary");
+
+    const cloudinaryData = await response.json();
+    const imageUrl = cloudinaryData.secure_url;
+
+    // ✅ Ambil data siswa dari Firestore
     const siswaDoc = await db.collection("siswa").doc(String(nis)).get();
 
     if (!siswaDoc.exists) {
@@ -20,7 +41,7 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
 
     const siswaData = siswaDoc.data();
 
-    // Simpan absen, dokumen unik per hari dan nis
+    // ✅ Simpan data absensi ke Firestore
     await db.collection("absen").doc(`${formattedTanggal}_${nis}`).set({
       siswaNis: nis,
       nama: siswaData.nama,
@@ -28,10 +49,12 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
       tanggal: formattedTanggal,
       lokasi: lokasi,
       status: status,
+      foto: imageUrl // link foto dari Cloudinary
     });
 
     alert("Absen berhasil dikirim!");
     document.getElementById('absenForm').reset();
+
   } catch (err) {
     console.error("Gagal absen:", err);
     alert("Gagal mengirim absen.");

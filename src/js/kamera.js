@@ -1,6 +1,5 @@
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
-const kirimButton = document.getElementById("kirimButton");
 
 navigator.mediaDevices
   .getUserMedia({ video: true })
@@ -11,18 +10,12 @@ navigator.mediaDevices
     console.error("Gagal mengakses kamera:", err);
   });
 
-kirimButton.addEventListener("click", () => {
+// Fungsi untuk mengambil gambar dari video
+function ambilGambarDariKamera() {
   const context = canvas.getContext("2d");
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL("image/png");
+}
 
-  const nis = document.getElementById("nis").value;
-  const status = document.getElementById("status").value;
-  const imageData = canvas.toDataURL("image/png");
-
-  // Kirim ke database/server jika diperlukan
-  console.log("NIS:", nis);
-  console.log("Status:", status);
-  console.log("Foto base64:", imageData);
-
- 
-});
+// Ekspor fungsi agar bisa dipakai di file lain
+window.ambilGambarDariKamera = ambilGambarDariKamera;
