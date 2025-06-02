@@ -9,10 +9,13 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
   const formattedTanggal = `${tanggal.getDate().toString().padStart(2, '0')}-${(tanggal.getMonth() + 1).toString().padStart(2, '0')}-${tanggal.getFullYear()}`;
 
   // Ambil gambar dari canvas
-  const canvas = document.getElementById("canvas");
-  const imageBase64 = canvas.toDataURL("image/png");
+ // Ambil gambar dari video dan isi canvas-nya
+  const imageBase64 = ambilGambarDariKamera();
+
 
   try {
+    document.getElementById("preview").src = imageBase64;
+
     // ✅ Upload gambar ke Cloudinary
     const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dqoo5xojd/image/upload";
     const uploadPreset = "absenImage";
