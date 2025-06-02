@@ -452,3 +452,22 @@ main {
     box-shadow: 0.1px 0.1px 7px 0.1px gray;
     }
 }
+
+  #loading-widget{display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .loading-widget-style{
+     border: 6px solid #f3f3f3;
+    border-top: 6px solid #4CAF50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
