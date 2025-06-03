@@ -116,4 +116,25 @@ function ambilData() {
   });
     
 }
+ document.addEventListener("DOMContentLoaded", function () {
+  const siswa = JSON.parse(localStorage.getItem("siswa"));
+  const info = document.getElementById("siswa-info");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (siswa && siswa.nama && siswa.nis) {
+    info.innerText = ` ${siswa.nama} (${siswa.nis})`;
+  } else {
+    info.innerText = "";
+  }
+
+  logoutBtn.addEventListener("click", function () {
+    if (confirm("Yakin ingin logout?")) {
+      localStorage.removeItem("siswa");
+      window.location.href = "login.html"; // ubah ke file login kamu
+    }
+  });
+});
+
+
+
 

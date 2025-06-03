@@ -27,8 +27,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
       if (siswaSnap.exists()) {
         const data = siswaSnap.data();
         const namaDatabase = data.nama.trim().toLowerCase();
-
         if (namaInput === namaDatabase) {
+            // ✅ Simpan ke localStorage (kebutuhan identitas)
+            localStorage.setItem("siswa", JSON.stringify({
+          nama: data.nama,
+          nis: nisInput
+        }));
+
+
           alert("Login berhasil! Selamat datang, " + data.nama);
           window.location.href = "dashboard.html"; // ganti sesuai kebutuhan
         } else {
