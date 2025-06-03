@@ -1,6 +1,8 @@
+
 document.getElementById('absenForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
+    showLoading();
   const nis = parseInt(document.getElementById('nis').value);
   const lokasi = document.getElementById('lokasi').value.trim();
   const status = document.getElementById('status').value;
@@ -15,7 +17,7 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
 
   try {
     document.getElementById("preview").src = imageBase64;
-
+  
     // ✅ Upload gambar ke Cloudinary
     const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dqoo5xojd/image/upload";
     const uploadPreset = "absenImage";
@@ -57,9 +59,11 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
 
     alert("Absen berhasil dikirim!");
     document.getElementById('absenForm').reset();
-
   } catch (err) {
     console.error("Gagal absen:", err);
     alert("Gagal mengirim absen.");
+  } finally {
+    hideLoading(); // ✅ Sembunyikan loading di akhir
   }
+ 
 });

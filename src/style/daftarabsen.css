@@ -129,11 +129,17 @@ th {
         th, td {
         padding: 5px 5px;
     }
+    .botton-menu {
+        display: block;
+    }
 }
 
 @media (min-width: 474px) {
     th, td {
         padding: 10px 10px;
+    }
+    .botton-menu {
+        display: block;
     }
 }
 
@@ -141,4 +147,8 @@ th {
     th, td {
         padding: 20px 40px;
     }
+    .botton-menu {
+        display: none;
+    }
 }
+

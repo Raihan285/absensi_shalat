@@ -12,23 +12,119 @@ function formatTanggal(date) {
 
 // Fungsi utama untuk memuat absen default (semua tanggal)
 async function loadAbsenByTanggal() {
-  const container = document.getElementById('absenContainer');
-  container.innerHTML = "";
+ try {
+    showLoading(); // Tampilkan loading widget
 
-  const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
-  const grouped = {};
+    const container = document.getElementById('absenContainer');
+    container.innerHTML = "";
 
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const tanggal = data.tanggal;
-    if (!grouped[tanggal]) grouped[tanggal] = [];
-    grouped[tanggal].push(data);
-  });
+    const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
+    const grouped = {};
 
-  for (const tanggal in grouped) {
-    const tableHTML = `
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const tanggal = data.tanggal;
+      if (!grouped[tanggal]) grouped[tanggal] = [];
+      grouped[tanggal].push(data);
+    });
+
+    for (const tanggal in grouped) {
+      const tableHTML = `
+        <div style="margin-bottom: 50px;">
+          <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>NIS</th>
+                <th>Nama</th>
+                <th>Kelas</th>
+                <th>Lokasi</th>
+                <th>Bukti</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${grouped[tanggal].map(data => `
+                <tr>
+                  <td>${data.siswaNis}</td>
+                  <td>${data.nama}</td>
+                  <td>${data.kelas}</td>
+                  <td>${data.lokasi || '-'}</td>
+                  <td>
+                    <a href="${data.foto}" target="_blank">
+                      <img src="${data.foto}" alt="-" width="60" style="border-radius: 8px;">
+                    </a>
+                  </td>
+                  <td><div class="${statusGet(data.status)}">${data.status}</div></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+      container.innerHTML += tableHTML;
+    }
+
+  } catch (error) {
+    console.error("Gagal menampilkan absen:", error);
+    alert("Terjadi kesalahan saat menampilkan data absen.");
+  } finally {
+    hideLoading(); // Pastikan loading disembunyikan walau error
+  }
+}
+
+// Fungsi untuk filter berdasarkan "Hari Ini", "Minggu Ini", atau "Bulan Ini"
+async function filterAbsen() {
+ 
+  showLoading(); // 👈 Tampilkan loading widget di awal
+
+  try {
+    const filter = document.getElementById('filterAbsen').value;
+    const container = document.getElementById('absenContainer');
+    const tanggalBrapa = document.getElementById('tanggalBrapa');
+    container.innerHTML = "";           
+
+    const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
+    const today = new Date();
+    const grouped = {};
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const [day, month, year] = data.tanggal.split('-').map(Number);
+      const tanggalDoc = new Date(year, month - 1, day);
+
+      let include = false;
+
+      if (filter === "today") {
+        include = (formatTanggal(today) === data.tanggal);
+      } else if (filter === "week") {
+        const dayOfWeek = today.getDay(); // Minggu = 0
+        const diffToMonday = (dayOfWeek + 6) % 7;
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - diffToMonday);
+        const sunday = new Date(monday);
+        sunday.setDate(monday.getDate() + 6);
+        include = tanggalDoc >= monday && tanggalDoc <= sunday;
+      } else if (filter === "month") {
+        include = tanggalDoc.getMonth() === today.getMonth() && tanggalDoc.getFullYear() === today.getFullYear();
+      }
+
+      if (include) {
+        if (!grouped[data.tanggal]) grouped[data.tanggal] = [];
+        grouped[data.tanggal].push(data);
+      }
+    });
+
+    if (Object.keys(grouped).length === 0) {
+      tanggalBrapa.innerText = "Tidak ada data pada filter ini.";
+    } else {
+      tanggalBrapa.innerText = `Menampilkan data: ${filter.toUpperCase()}`;
+    }
+
+    for (const tanggal in grouped) {
+      const tableHTML = `
       <div style="margin-bottom: 50px;">
-      <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
+        <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
         <table>
           <thead>
             <tr>
@@ -36,7 +132,7 @@ async function loadAbsenByTanggal() {
               <th>Nama</th>
               <th>Kelas</th>
               <th>Lokasi</th>
-              <th>bukti</th>
+              <th>Bukti</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -47,103 +143,30 @@ async function loadAbsenByTanggal() {
                 <td>${data.nama}</td>
                 <td>${data.kelas}</td>
                 <td>${data.lokasi || '-'}</td>
-               <td><a href="${data.foto}" target="_blank">
-                <img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;">
-              </a>
-              </td>
+                <td>
+                  <a href="${data.foto}" target="_blank">
+                    <img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;">
+                  </a>
+                </td>
                 <td><div class="${statusGet(data.status)}">${data.status}</div></td>
               </tr>
             `).join("")}
           </tbody>
         </table>
       </div>
-    `;
-    container.innerHTML += tableHTML;
+      `;
+      container.innerHTML += tableHTML;
+    }
+
+  } catch (error) {
+    console.error("Gagal memfilter data absen:", error);
+    alert("Terjadi kesalahan saat memfilter absen.");
+  } finally {
+    hideLoading(); // 👈 Sembunyikan loading widget setelah selesai
   }
 }
 
-// Fungsi untuk filter berdasarkan "Hari Ini", "Minggu Ini", atau "Bulan Ini"
-async function filterAbsen() {
-  const filter = document.getElementById('filterAbsen').value;
-  const container = document.getElementById('absenContainer');
-  const tanggalBrapa = document.getElementById('tanggalBrapa');
-  container.innerHTML = "";           
 
-  const snapshot = await db.collection("absen").orderBy("tanggal", "desc").get();
-  const today = new Date();
-  const grouped = {};
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const [day, month, year] = data.tanggal.split('-').map(Number);
-    const tanggalDoc = new Date(year, month - 1, day);
-
-    let include = false;
-
-    if (filter === "today") {
-      include = (formatTanggal(today) === data.tanggal);
-    } else if (filter === "week") {
-      const dayOfWeek = today.getDay(); // Minggu = 0
-      const diffToMonday = (dayOfWeek + 6) % 7;
-      const monday = new Date(today);
-      monday.setDate(today.getDate() - diffToMonday);
-      const sunday = new Date(monday);
-      sunday.setDate(monday.getDate() + 6);
-      include = tanggalDoc >= monday && tanggalDoc <= sunday;
-    } else if (filter === "month") {
-      include = tanggalDoc.getMonth() === today.getMonth() && tanggalDoc.getFullYear() === today.getFullYear();
-    }
-
-    if (include) {
-      if (!grouped[data.tanggal]) grouped[data.tanggal] = [];
-      grouped[data.tanggal].push(data);
-    }
-  });
-
-  if (Object.keys(grouped).length === 0) {
-    tanggalBrapa.innerText = "Tidak ada data pada filter ini.";
-  } else {
-    tanggalBrapa.innerText = `Menampilkan data: ${filter.toUpperCase()}`;
-  }
-
-  for (const tanggal in grouped) {
-    const tableHTML = `
-    <div style="margin-bottom: 50px;"">
-      <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>NIS</th>
-            <th>Nama</th>
-            <th>Kelas</th>
-            <th>Lokasi</th>
-            <th>bukti</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${grouped[tanggal].map(data => `
-            <tr>
-              <td>${data.siswaNis}</td>
-              <td>${data.nama}</td>
-              <td>${data.kelas}</td>
-              <td>${data.lokasi || '-'}</td>
-              <td>
-              <a href="${data.foto}" target="_blank">
-                <img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;">
-              </a>
-            </td>
-
-              <td><div class="${statusGet(data.status)}">${data.status}</div></td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-     </div>
-    `;
-    container.innerHTML += tableHTML;
-  }
-}
 
 // Jalankan saat halaman dibuka
 window.onload = async function () {
