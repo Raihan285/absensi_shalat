@@ -4,11 +4,36 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
   showLoading();
   const nis = parseInt(document.getElementById('nis').value);
   const status = document.getElementById('status').value;
+  const tokenInput = document.getElementById('token').value.trim();
   const tanggal = new Date();
   const formattedTanggal = `${tanggal.getDate().toString().padStart(2, '0')}-${(tanggal.getMonth() + 1).toString().padStart(2, '0')}-${tanggal.getFullYear()}`;
 
   const imageBase64 = ambilGambarDariKamera();
 
+  // ✅ 1. Cek token
+  const today = new Date();
+const year = today.getFullYear();
+const month = (today.getMonth() + 1).toString().padStart(2, '0');
+const day = today.getDate().toString().padStart(2, '0');
+const formattedDate = `${day}-${month}-${year}`;
+
+const tokenDoc = await db.collection("token_absen").doc(formattedDate).get();
+
+
+  if (!tokenDoc.exists) {
+    alert("Token tidak tersedia. Hubungi Guru.");
+    hideLoading();
+    return;
+  }
+
+  const validToken = tokenDoc.data().token; // token sah disimpan di Firestore
+  if (tokenInput !== validToken) {
+    alert("Token salah! Absen dibatalkan.");
+    hideLoading();
+    return;
+  }
+
+  // ✅ 2. Cek lokasi
   if (!navigator.geolocation) {
     alert("Browser tidak mendukung lokasi!");
     hideLoading();
@@ -18,14 +43,11 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
   navigator.geolocation.getCurrentPosition(async (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-
-    // ✅ Lokasi sebagai URL Google Maps
     const lokasi = `https://www.google.com/maps?q=${latitude},${longitude}`;
 
     try {
       document.getElementById("preview").src = imageBase64;
 
-      // ✅ Upload gambar ke Cloudinary
       const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dqoo5xojd/image/upload";
       const uploadPreset = "absenImage";
 
@@ -43,7 +65,6 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
       const cloudinaryData = await uploadResponse.json();
       const imageUrl = cloudinaryData.secure_url;
 
-      // ✅ Ambil data siswa dari Firestore
       const siswaDoc = await db.collection("siswa").doc(String(nis)).get();
 
       if (!siswaDoc.exists) {
@@ -53,15 +74,15 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
 
       const siswaData = siswaDoc.data();
 
-      // ✅ Simpan data absensi ke Firestore
       await db.collection("absen").doc(`${formattedTanggal}_${nis}`).set({
         siswaNis: nis,
         nama: siswaData.nama,
         kelas: siswaData.kelas,
         tanggal: formattedTanggal,
-        lokasi: lokasi, // URL Google Maps
+        lokasi: lokasi,
         status: status,
-        foto: imageUrl
+        foto: imageUrl,
+        token: tokenInput
       });
 
       alert("Absen berhasil dikirim!");

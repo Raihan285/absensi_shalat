@@ -87,6 +87,20 @@
       <button type="submit">Simpan Data Siswa</button>
     </form>
 
+   <!-- FORM BUAT DAN SIMPAN TOKEN -->
+<div style="padding: 20px; max-width: 400px;">
+  <h2>Buat Token Absen</h2>
+  <label for="prefix">Prefix Token (contoh: ABSEN)</label><br>
+  <input type="text" id="prefix" placeholder="Contoh: ABSEN" value="ABSEN"><br><br>
+
+  <button onclick="generateAndSaveToken()">Buat & Simpan Token</button><br><br>
+
+  <label>Token Hari Ini:</label>
+  <input type="text" id="generatedToken" readonly style="width: 100%; font-weight: bold; background: #f0f0f0;"><br><br>
+</div>
+
+
+
     <h2>Data Siswa</h2>
     <table>
       <thead>
@@ -175,5 +189,30 @@
       window.onload = loadSiswa;
 
   </script>
+  <script>
+  async function generateAndSaveToken() {
+    const prefix = document.getElementById("prefix").value || "ABSEN";
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const formattedDate = `${day}-${month}-${year}`;
+    const token = `${prefix}${year}${month}${day}`;
+
+    document.getElementById("generatedToken").value = token;
+
+    try {
+      await db.collection("token_absen").doc(formattedDate).set({
+        token: token,
+        dibuat_pada: new Date()
+      });
+
+      alert("Token berhasil disimpan ke database!");
+    } catch (err) {
+      console.error("Gagal menyimpan token:", err);
+      alert("Gagal menyimpan token.");
+    }
+  }
+</script>
 </body>
 </html>
