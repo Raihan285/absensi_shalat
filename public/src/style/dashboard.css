@@ -302,11 +302,20 @@ main {
     -o-border-radius: 15px;
 }
 
+#filterAbsen {
+    padding: 5px 20px;
+}
+
 
 /* end main dashboard */
 
 /* responsif */
 @media (max-width: 576px) {
+    .main-dashboard {
+        align-content: center;
+        justify-items: center;
+    }
+
         header {
         display: none;
     }
@@ -378,6 +387,9 @@ main {
 }
 
 @media (min-width: 768px) {
+    .botton-menu {
+        display: block;
+    }
     header {
         display: none;
     }
