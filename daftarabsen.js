@@ -49,7 +49,7 @@ async function loadAbsenByTanggal() {
                   <td>${data.siswaNis}</td>
                   <td>${data.nama}</td>
                   <td>${data.kelas}</td>
-                  <td>${data.lokasi || '-'}</td>
+                  <td><a href="${data.lokasi}">Lokasi</a></td>
                   <td>
                     <a href="${data.foto}" target="_blank">
                       <img src="${data.foto}" alt="-" width="60" style="border-radius: 8px;">
@@ -142,7 +142,7 @@ async function filterAbsen() {
                 <td>${data.siswaNis}</td>
                 <td>${data.nama}</td>
                 <td>${data.kelas}</td>
-                <td>${data.lokasi || '-'}</td>
+                 <td><a href="${data.lokasi}">Lokasi</a></td>
                 <td>
                   <a href="${data.foto}" target="_blank">
                     <img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;">
