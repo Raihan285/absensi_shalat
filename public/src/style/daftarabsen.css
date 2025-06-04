@@ -116,24 +116,6 @@ th {
     -o-transition: 0.2s ease-in-out;
 }
 
-select {
-    width: 290px;
-    padding: 6px 10px;
-    border-radius: 10px;
-    background-color: #3d5a1a9a;
-    border: 1px solid #3d5a1a9a;
-    color: white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-select:focus {
-    border: 1px solid #3d5a1a9a;
-    outline: none;
-}
-
 
 .main-dashboard {
     margin-bottom: 70px;
@@ -147,26 +129,17 @@ select:focus {
         th, td {
         padding: 5px 5px;
     }
-    .botton-menu {
-        display: block;
-    }
 }
 
 @media (min-width: 474px) {
     th, td {
         padding: 10px 10px;
     }
-    .botton-menu {
-        display: block;
-    }
 }
 
 @media (min-width: 992px) {
     th, td {
         padding: 20px 40px;
-    }
-    .botton-menu {
-        display: none;
     }
 }
 

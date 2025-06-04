@@ -315,7 +315,6 @@ main {
         align-content: center;
         justify-items: center;
     }
-
         header {
         display: none;
     }
@@ -360,7 +359,7 @@ main {
     box-shadow: 0.1px 0.1px 7px 0.1px gray;
     }
 }
-@media (min-width: 576px) {
+@media (min-width: 577px) {
     header {
         display: none;
     }
