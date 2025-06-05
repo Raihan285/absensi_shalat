@@ -39,7 +39,6 @@ header {
     background-color: #3D5A1A;
     color: white;
     font-weight: 34px;
-    width: 100%;
 }
 
 .header-1 {
@@ -427,6 +426,9 @@ main {
 }
 
 @media (min-width: 992px) {
+    .header {
+        width: 100%;
+    }
     header {
         display: flex;
     }

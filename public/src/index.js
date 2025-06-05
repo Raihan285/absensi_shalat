@@ -130,7 +130,7 @@ function ambilData() {
   logoutBtn.addEventListener("click", function () {
     if (confirm("Yakin ingin logout?")) {
       localStorage.removeItem("siswa");
-      window.location.href = "login.html"; // ubah ke file login kamu
+      window.location.href = "index.html"; // ubah ke file login kamu
     }
   });
 });
