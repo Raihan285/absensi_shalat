@@ -9,6 +9,7 @@ body {
     flex-direction: row;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    flex-direction: row;
 }
 
 /* navigasi sticky */
@@ -18,7 +19,7 @@ body {
     top: 0;
     right: 0;
     height: 100vh;
-    z-index: 6;
+    z-index: 1001;
     background-color: #7cb438;
     box-shadow: -2px 0 20px #7cb438d4;
     display: none;
@@ -32,6 +33,7 @@ header {
     top: 0; /* Menempel di bagian atas parent .section */
     z-index: 1;
     overflow-x: hidden;
+
 }
 
 .header {
@@ -39,6 +41,7 @@ header {
     background-color: #3D5A1A;
     color: white;
     font-weight: 34px;
+    position: absolute;
 }
 
 .header-1 {
@@ -96,7 +99,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-top: 20px;
+    margin-top: 150px;
 
 }
 
@@ -332,7 +335,7 @@ main {
         table-layout: fixed;
     }
     .header-2 {
-        display: none;
+        display: flex;
     }
         .hari_absen h3 {
         margin: auto;

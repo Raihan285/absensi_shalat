@@ -10,38 +10,16 @@
   <link rel="stylesheet" href="/src/style/daftarabsen.css">
   <link rel="stylesheet" href="src/style/main.css">
 
-  <style>
-    .sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    z-index: 6;
-    background-color: #7cb438;
-    box-shadow: -2px 0 20px #7cb438d4;
-    display: none;
-}
-
-main {
-  position: absolute;
-  top: 0;
-  width: 75%;
-  right: 0;
-}
-
-header {
-  position: relative;
-}
-.header {
-  width: 100%;
-}
-
-  </style>
 
 <!-- Firebase SDK compat version -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
 
+<style>
+  #video {
+    transform: scaleX(-1); 
+  }
+</style>
 
 </head>
 <body>
@@ -108,7 +86,7 @@ header {
              <button id="logoutBtn" class="logout">Logout</button>
           </div> 
         <div>
-                    <img class="botton-menu" onclick="showSidebar()" src="/image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
+                    <img class="botton-menu" onclick="showSidebar()" src="../public/image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
         </div>
         </div>
       </div>
@@ -157,7 +135,7 @@ header {
 
     <div class="container-absen">
       <div class="camera">
-        <video id="video" autoplay playsinline></video>
+        <video id="video" autoplay playsinline mirror></video>
         <canvas id="canvas" width="320" height="240"></canvas>
       </div>
 
