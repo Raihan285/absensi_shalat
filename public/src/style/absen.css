@@ -3,6 +3,32 @@
     margin: auto;
 }
 
+.nav-header {
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.932);
+    box-shadow: 4px 4px 4px 4px rgba(55, 55, 55, 0.13);
+    filter: blur();
+    padding: 20px 20px;
+    position: sticky;
+    -webkit-filter: blur();
+    margin-top: 0;
+    z-index: 5;
+}
+
+header {
+    width: 25%;
+    background-color: #7CB438;
+    height: 100vh;
+    position: sticky;
+    top: 0; /* Menempel di bagian atas parent .section */
+    z-index: 9;
+    overflow-x: hidden;
+}
+
 .camera div{
     width: 350px;
     height: 200px;

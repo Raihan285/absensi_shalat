@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XI RPL</title>
     <link rel="shortcut icon" href="/image/logokartika_400x400-2 3.png" type="image/x-icon">
-    <link rel="stylesheet" href="/src/style/dashboard.css">
-    <link rel="stylesheet" href="/src/style/daftarabsen.css">
-    <link rel="stylesheet" href="/src/style/kelas.css">
+    <link rel="stylesheet" href="/public/src/style/dashboard.css">
+    <link rel="stylesheet" href="/public/src/style/daftarabsen.css">
+    <link rel="stylesheet" href="/public/src/style/kelas.css">
  
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
@@ -16,40 +16,40 @@
 
 </head>
 <body>
-    <header>
+        <header>
         <nav>
             <div class="header">
                 <h1>SMK KARTIKA XX-1</h1>
             </div>
             <div class="menu">
                 <div class="menu-1">
-                    <a class="a" href="/dashboard.html">
-                        <img src="/image/dashboard.png" alt="">
+                    <a class="a" href="/public/dashboard.html">
+                        <img src="/public/image/dashboard.png" alt="">
                         <h4>Dashboard</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/daftarabsen.html">
-                        <img src="/image/rekapitulasi.png" alt="">
+                    <a class="a" href="/public/daftarabsen.html">
+                        <img src="/public/image/rekapitulasi.png" alt="">
                         <h4>Rekapitulasi</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/absen.html">
-                        <img src="/image/absensi.png" alt="">
+                    <a class="a" href="/public/absen.html">
+                        <img src="/public/image/absensi.png" alt="">
                         <h4>Absensi</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/leaderboard.html">
-                        <img src="/image/leaderboard.png" alt="">
+                    <a class="a" href="/public/leaderboard.html">
+                        <img src="/public/image/leaderboard.png" alt="">
                         <h4>Leaderboard</h4>
                     </a>
                 </div>
             </div>
             <div class="header-1">
                     <div class="circle">
-                        <img width="40px" height="40px" style="z-index: 100; padding: 6px 8px;" src="/image/rekapitulasi.png" alt="">
+                        <img width="40px" height="40px" style="z-index: 100; padding: 6px 8px;" src="/public/image/rekapitulasi.png" alt="">
                     </div>
                     <div class="v-1">
                         <h4>Absensi Siswa</h4>
@@ -83,10 +83,10 @@
                     <div class="circle">
                         <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="/image/rekapitulasi.png" alt="">
                     </div>
-                                        <div>
-                        <h4>Qaisar Al Zikra</h4>
-                        <p>Siswa</p>
-                    </div>
+                        <div id="siswa-widget" class="identitas">
+             <span id="siswa-info"></span>
+             <button id="logoutBtn" class="logout">Logout</button>
+          </div> 
 
                 <div>
                     <img class="botton-menu" onclick="showSidebar()" src="/image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
