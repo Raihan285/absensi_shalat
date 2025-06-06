@@ -123,8 +123,9 @@
         <div style="color: black;" class="search-handphone">
                 <input type="search" placeholder="Cari Siswa">
             </div>
+            <button id="download" onclick="download()"><img src="../../../image/download_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
         <div class="tabel-absen">
-            <table>
+            <table id="konten1">
                 <tr>
                     <th rowspan="2">NO</th>
                     <th rowspan="2">NIS</th>
@@ -239,6 +240,25 @@
             </table>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+          async function download() {
+    const { jsPDF } = window.jspdf;
+    const konten = document.getElementById("konten1");
+
+    const canvas = await html2canvas(konten);
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF();
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, "PNG", 0.5, 0.5, pdfWidth, pdfHeight);
+    pdf.save("X SM.pdf");
+  }
+    </script>
 </body>
 <script src="../../../src/index.js"></script>
 </html>
