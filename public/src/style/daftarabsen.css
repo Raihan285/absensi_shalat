@@ -1,5 +1,14 @@
 /* main datra absen */
 
+#download {
+    padding: 5px 5px;
+    border-radius: 100%;
+    margin-left: 10%;
+    margin-top: 60px;
+    border: 1px solid #3d5a1ae1;
+    background-color: #7cb438c2;
+}
+
 table {
     border: 1px solid #3d5a1a71;
     border-collapse: collapse;

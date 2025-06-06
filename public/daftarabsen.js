@@ -30,7 +30,8 @@ async function loadAbsenByTanggal() {
 
     for (const tanggal in grouped) {
       const tableHTML = `
-        <div style="margin-bottom: 50px;">
+      <button id="download" onclick="download('konten-${tanggal}')"><img src="image/download_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+        <div id="konten-${tanggal}" style="margin-bottom: 50px;">
           <h3 style="padding-bottom: 20px;">Tanggal: ${tanggal}</h3>
           <table>
             <thead>
@@ -71,6 +72,7 @@ async function loadAbsenByTanggal() {
   } finally {
     hideLoading(); // Pastikan loading disembunyikan walau error
   }
+  
 }
 
 // Fungsi untuk filter berdasarkan "Hari Ini", "Minggu Ini", atau "Bulan Ini"
@@ -165,6 +167,22 @@ async function filterAbsen() {
     hideLoading(); // 👈 Sembunyikan loading widget setelah selesai
   }
 }
+
+  async function download(tableId) {
+    const { jsPDF } = window.jspdf;
+    const konten = document.getElementById(tableId);
+
+    const canvas = await html2canvas(konten);
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF();
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
+    pdf.save(`${tableId}.pdf`);
+  }
 
 
 
