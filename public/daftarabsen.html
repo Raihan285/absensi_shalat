@@ -56,17 +56,21 @@
 
     <main>
         <div class="nav-header">
-            <div style="color: black;">
-                <h2>Rekapitulasi</h2>
-                <p style="color: rgba(0, 0, 0, 0.556);">Rekap absen siswa</p>
+            <div style="color: black;" style="display: flex; flex-direction: column; gap: 30px;">
+                <div>
+                    <h2 style="font-size: 24px;">Rekapitulasi</h2>
+                    <p style="color: rgba(0, 0, 0, 0.556);">Rekap absen siswa</p>
+                </div>
+                <div>
+                    <select id="filterAbsen" onchange="filterAbsen()">
+                    <option value="today">Hari Ini</option>
+                    <option value="week">Minggu Ini</option>
+                    <option value="month">Bulan Ini</option>
+                  </select>
+                </div>
             </div>
 
             <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
-              <select id="filterAbsen" onchange="filterAbsen()">
-                <option value="today">Hari Ini</option>
-                <option value="week">Minggu Ini</option>
-                <option value="month">Bulan Ini</option>
-              </select>
 
                 <div style="color: black;" class="search">
                     <input type="search" placeholder="Cari Siswa">
@@ -81,7 +85,7 @@
           </div> 
                 </div>
                 <div class="botton-menu">
-                    <img class="botton-menu" onclick="showSidebar()" src="../public/image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
+                    <img class="botton-menu" onclick="showSidebar()" src="image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
                 </div>
             </div>
         </div>
@@ -128,6 +132,9 @@
         </nav>
 
         <div class="main-dashboard">
+            <div style="color: black;" class="search-handphone">
+                    <input type="search" placeholder="Cari Siswa">
+                </div>
             <div class="hari_absen">
               <h4 id="tanggalBrapa" style="margin-top: 20px;"></h4>
                <div id="absenContainer"></div>

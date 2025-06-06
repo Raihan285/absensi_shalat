@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XI RPL</title>
-    <link rel="shortcut icon" href="/image/logokartika_400x400-2 3.png" type="image/x-icon">
+    <title>XI KR 1</title>
+    <link rel="shortcut icon" href="../../../image/logokartika_400x400-2 3.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../src/style/dashboard.css">
     <link rel="stylesheet" href="../../../src/style/daftarabsen.css">
     <link rel="stylesheet" href="../../../src/style/kelas.css">
- 
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-   
-
-
 </head>
 <body>
-        <header>
+    <header>
         <nav>
             <div class="header">
                 <h1>SMK KARTIKA XX-1</h1>
@@ -61,18 +55,9 @@
     
     <main>
         <div class="nav-header">
-            <div style="color: black;">
-                <h2>XI Rekayasa Perangkat Lunak</h2>
+            <div style="color: black;" class="sub-judul">
+                <h2>X Rekayasa P.L <br>Desain K.V</h2>
                 <p style="color: rgba(0, 0, 0, 0.556);">Daftar siswa</p>
-            </div>
-           <div style="margin: 20px 0;">
-            <label for="filterWaktu">Filter Waktu:</label>
-            <select id="filterWaktu" onchange="ambilData()">
-                <option value="">Semua</option>
-                <option value="today">Hari Ini</option>
-                <option value="thisWeek">Minggu Ini</option>
-                <option value="thisMonth">Bulan Ini</option>
-            </select>
             </div>
 
             <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
@@ -81,15 +66,15 @@
                 </div>
                 <div class="header-2">
                     <div class="circle">
-                        <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="/image/rekapitulasi.png" alt="">
+                        <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="../../../image/rekapitulasi.png" alt="">
                     </div>
-                        <div id="siswa-widget" class="identitas">
-             <span id="siswa-info"></span>
-             <button id="logoutBtn" class="logout">Logout</button>
-          </div> 
+                    <div id="siswa-widget" class="identitas">
+                        <span id="siswa-info"></span>
+                        <button id="logoutBtn" class="logout">Logout</button>
+                    </div> 
 
                 <div>
-                    <img class="botton-menu" onclick="showSidebar()" src="/image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
+                    <img class="botton-menu" onclick="showSidebar()" src="../../../image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
                 </div>
             </div>
         </div>
@@ -101,33 +86,33 @@
             </div>
             <div class="menu">
                 <div class="menu-1">
-                    <a class="a" href="/dashboard.html">
-                        <img src="/image/dashboard.png" alt="">
+                    <a class="a" href="../../../dashboard.html">
+                        <img src="../../../image/dashboard.png" alt="">
                         <h4>Dashboard</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/daftarabsen.html">
-                        <img src="/image/rekapitulasi.png" alt="">
+                    <a class="a" href="../../../daftarabsen.html">
+                        <img src="../../../image/rekapitulasi.png" alt="">
                         <h4>Rekapitulasi</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/absen.html">
-                        <img src="/image/absensi.png" alt="">
+                    <a class="a" href="../../../absen.html">
+                        <img src="../../../image/absensi.png" alt="">
                         <h4>Absensi</h4>
                     </a>
                 </div>
                 <div class="menu-1">
-                    <a class="a" href="/leaderboard.html">
-                        <img src="/image/leaderboard.png" alt="">
+                    <a class="a" href="../../../leaderboard.html">
+                        <img src="../../../image/leaderboard.png" alt="">
                         <h4>Leaderboard</h4>
                     </a>
                 </div>
             </div>
             <div class="header-1">
                     <div class="circle">
-                        <img width="40px" height="40px" style="z-index: 100; padding: 6px 8px;" src="/image/rekapitulasi.png" alt="">
+                        <img width="40px" height="40px" style="z-index: 100; padding: 6px 8px;" src="../../../image/rekapitulasi.png" alt="">
                     </div>
                     <div class="v-1">
                         <h4>Absensi Siswa</h4>
@@ -135,47 +120,125 @@
                     </div>
                 </div>
         </nav>
-       <div class="tabel-absen">
-    <table>
-        <thead>
-            <tr>
-                <th rowspan="2">NO</th>
-                <th rowspan="2">NIS</th>
-                <th rowspan="2">Nama</th>
-                <th colspan="3">Status</th>
-            </tr>
-            <tr>
-                <th class="green">Shalat</th>
-                <th class="yellow">Izin</th>
-                <th class="red">Alpha</th>
-            </tr>
-        </thead>
-        <tbody id="data-siswa">
-            <!-- Data siswa dari Firebase akan dimasukkan di sini -->
-        </tbody>
-    </table>
-</div>
+        <div style="color: black;" class="search-handphone">
+                <input type="search" placeholder="Cari Siswa">
+            </div>
+        <div class="tabel-absen">
+            <table>
+                <tr>
+                    <th rowspan="2">NO</th>
+                    <th rowspan="2">NIS</th>
+                    <th rowspan="2">Nama</th>
+                    <th colspan="3">Status</th>
+                </tr>
+                <tr>
+                    <th class="green">Shalat</th>
+                    <th class="yellow">Izin</th>
+                    <th class="red">Alpha</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>238001</td>
+                    <td>Ahmad Rantisi</td>
+                    <td>
+                        <div class="Status-sholat">
+                            <p>50%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-izin">
+                            <p>10%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-alpa">
+                            <p>40%</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>238002</td>
+                    <td>Chandra Valentio Dammes</td>
+                    <td>
+                        <div class="Status-sholat">
+                            <p>80%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-izin">
+                            <p>5%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-alpa">
+                            <p>15%</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>238003</td>
+                    <td>Firmansyah Fath Al-Rasyidi</td>
+                    <td>
+                        <div class="Status-sholat">
+                            <p>10%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-izin">
+                            <p>0%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-alpa">
+                            <p>90%</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>238014</td>
+                    <td>Qaisar Al Zikra</td>
+                    <td>
+                        <div class="Status-sholat">
+                            <p>100%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-izin">
+                            <p>0%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-alpa">
+                            <p>0%</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>238005</td>
+                    <td>Muh Alif Wal Muhajir</td>
+                    <td>
+                        <div class="Status-sholat">
+                            <p>90%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-izin">
+                            <p>2%</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="Status-alpa">
+                            <p>8%</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </main>
-
-
-    
-<!-- Widget Loading -->
-<div id="loading-widget" >
-  <div class="loading-widget-style"></div>
-</div>
-
-<style>
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
 </body>
-
-<script src="/src/database.js"></script>
-<script src="/src/index.js"></script>
-<script>
-    const kodeKelas = "X RPLDKV";
-// Muat data awal (tanpa filter)
-ambilData();
-</script>
+<script src="../../../src/index.js"></script>
+</html>
