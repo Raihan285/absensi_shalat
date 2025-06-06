@@ -16,6 +16,8 @@
     const nis = urlParams.get("nis");
     const infoDiv = document.getElementById("infoPersentase");
 
+    console.log("NIS dari URL:", nis);
+
     async function hitungPersentase() {
       if (!nis) {
         infoDiv.innerText = "NIS tidak ditemukan di URL.";
@@ -23,33 +25,38 @@
       }
 
       try {
-        const snapshot = await db.collection("absen").where("siswaNis", "==", Number(nis)).get();
+        const snapshot = await db.collection("absen").where("siswaNis", "==", nis).get();
+
+        console.log("Jumlah dokumen ditemukan:", snapshot.size);
 
         if (snapshot.empty) {
           infoDiv.innerHTML = `Tidak ada data untuk NIS: ${nis}`;
           return;
         }
 
-        const statusByDate = {};
-        const tanggalSet = new Set();
+        const statusPerTanggal = new Map();
 
         snapshot.forEach((doc) => {
           const data = doc.data();
           const tgl = data.tanggal;
-          tanggalSet.add(tgl);
-          statusByDate[tgl] = data.status.toLowerCase();
+          const status = data.status?.toLowerCase();
+
+          if (!statusPerTanggal.has(tgl)) {
+            statusPerTanggal.set(tgl, status);
+          }
         });
 
         let sholat = 0, izin = 0, alpa = 0;
-        tanggalSet.forEach(tgl => {
-          const status = statusByDate[tgl];
+
+        for (const [tgl, status] of statusPerTanggal.entries()) {
           if (status === "sholat") sholat++;
           else if (status === "izin") izin++;
           else alpa++;
-        });
+        }
 
-        const totalHari = tanggalSet.size;
-        const persen = (jumlah) => totalHari > 0 ? ((jumlah / totalHari) * 100).toFixed(2) + "%" : "0.00%";
+        const totalHari = statusPerTanggal.size;
+        const persen = (jumlah) =>
+          totalHari > 0 ? ((jumlah / totalHari) * 100).toFixed(2) + "%" : "0.00%";
 
         infoDiv.innerHTML = `
           <p>NIS: ${nis}</p>
