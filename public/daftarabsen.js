@@ -147,7 +147,7 @@ async function filterAbsen() {
                  <td><a href="${data.lokasi}">Lokasi</a></td>
                 <td>
                   <a href="${data.foto}" target="_blank">
-                    <img src="${data.foto}" alt="Foto Absen" width="60" style="border-radius: 8px;">
+                    <img src="${data.foto}" alt="Foto Absen" width="50" style="border-radius: 8px;">
                   </a>
                 </td>
                 <td><div class="${statusGet(data.status)}">${data.status}</div></td>
