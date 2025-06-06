@@ -123,6 +123,13 @@ function ambilData() {
 
   if (siswa && siswa.nama && siswa.nis) {
     info.innerText = ` ${siswa.nama} (${siswa.nis})`;
+   
+     info.style.cursor = "pointer";
+    info.title = "Klik untuk lihat persentase sholat";
+    info.addEventListener("click", () => {
+      window.location.href = `/public/siswaPage.html?nis=${siswa.nis}`;
+    });
+
   } else {
     info.innerText = "";
   }
@@ -130,7 +137,8 @@ function ambilData() {
   logoutBtn.addEventListener("click", function () {
     if (confirm("Yakin ingin logout?")) {
       localStorage.removeItem("siswa");
-      window.location.href = "index.html"; // ubah ke file login kamu
+      window.location.href = "/public/index.html";
+
     }
   });
 });

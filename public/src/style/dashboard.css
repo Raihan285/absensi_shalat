@@ -304,7 +304,7 @@ main {
     -o-border-radius: 15px;
 }
 
-#filterAbsen {
+.filter-absen {
     padding: 5px 20px;
 }
 
