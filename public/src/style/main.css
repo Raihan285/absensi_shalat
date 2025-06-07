@@ -23,7 +23,8 @@ body {
 
     .login-right {
             justify-self: center;
-    align-content: center;
+            align-content: center;
+            margin: auto;
     }
 
     input {
