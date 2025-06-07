@@ -10,6 +10,7 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     flex-direction: row;
+    background-color: white;
 }
 
 /* navigasi sticky */
@@ -42,6 +43,7 @@ header {
     color: white;
     font-weight: 34px;
     position: absolute;
+    z-index: 2000;
 }
 
 .header-1 {
@@ -316,6 +318,9 @@ main {
         header {
         display: none;
     }
+    .header-2 {
+        display: none;
+    }
     .botton-menu {
         display: block;
     }
@@ -340,11 +345,6 @@ main {
 
     .identitas {
         font-size: 14px;
-    }
-
-    .header-2 {
-        display: flex;
-        margin-left: 20px;
     }
         .hari_absen h3 {
         margin: auto;
@@ -385,7 +385,7 @@ main {
         display: none;
     }
         .header-2 {
-        display: flex;
+        display: none;
     }
     table {
         width:  90%;
@@ -402,6 +402,9 @@ main {
 @media (min-width: 768px) {
     .botton-menu {
         display: block;
+    }
+    .header-2 {
+        display: none;
     }
     header {
         display: none;
@@ -443,6 +446,9 @@ main {
 @media (min-width: 992px) {
     .header {
         width: 100%;
+    }
+    .header-2 {
+        display: flex;
     }
     header {
         display: flex;

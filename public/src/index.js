@@ -120,6 +120,8 @@ function ambilData() {
   const siswa = JSON.parse(localStorage.getItem("siswa"));
   const info = document.getElementById("siswa-info");
   const logoutBtn = document.getElementById("logoutBtn");
+  const logoutBtnHidebar = document.getElementById("logoutBtnHidebar");
+  const info1 = document.getElementById ("siswa-info1")
 
   if (siswa && siswa.nama && siswa.nis) {
     info.innerText = ` ${siswa.nama} (${siswa.nis})`;
@@ -134,7 +136,27 @@ function ambilData() {
     info.innerText = "";
   }
 
+  if (siswa && siswa.nama && siswa.nis) {
+    info1.innerText = ` ${siswa.nama} (${siswa.nis})`;
+   
+     info1.style.cursor = "pointer";
+    info1.title = "Klik untuk lihat persentase sholat";
+    info1.addEventListener("click", () => {
+      window.location.href = `/public/siswaPage.html?nis=${siswa.nis}`;
+    });
+
+  } else {
+    info1.innerText = "";
+  }
+
   logoutBtn.addEventListener("click", function () {
+    if (confirm("Yakin ingin logout?")) {
+      localStorage.removeItem("siswa");
+      window.location.href = "/public/index.html";
+
+    }
+  });
+  logoutBtnHidebar.addEventListener("click", function () {
     if (confirm("Yakin ingin logout?")) {
       localStorage.removeItem("siswa");
       window.location.href = "/public/index.html";
