@@ -43,20 +43,20 @@ th {
 
 .Status-sholat {
     background-color: #7cb438c2;
-    padding: 8px 20px;
     border-radius: 20px;
     color: white;
+    padding: 5px 5px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    text-align: center;
 }
 
 .Status-sholat:hover {
     background-color: #7cb438ea;
     box-shadow: 0 0 15px #7cb438c2;
     transition: 0.2s ease-in-out;
-    padding: 8px 20px;
     border-radius: 20px;
     color: white;
     -webkit-border-radius: 20px;
@@ -71,20 +71,20 @@ th {
 
 .Status-izin {
     background-color: #aeb438;
-    padding: 8px 20px;
     border-radius: 20px;
     color: white;
+    padding: 5px 5px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    text-align: center;
 }
 
 .Status-izin:hover {
     background-color: #bec62e;
     box-shadow: 0 0 15px #aeb438;
     transition: 0.2s ease-in-out;
-    padding: 8px 20px;
     border-radius: 20px;
     color: white;
     -webkit-border-radius: 20px;
@@ -99,20 +99,20 @@ th {
 
 .Status-alpa {
     background-color: rgba(255, 0, 0, 0.637);
-    padding: 8px 20px;
     border-radius: 20px;
+    padding: 5px 5px;
     color: white;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+    text-align: center;
 }
 
 .Status-alpa:hover {
     background-color: rgba(255, 0, 0, 0.8);
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.637);
     transition: 0.2s ease-in-out;
-    padding: 8px 20px;
     border-radius: 20px;
     color: white;
     -webkit-border-radius: 20px;
@@ -124,7 +124,6 @@ th {
     -ms-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
 }
-
 
 .main-dashboard {
     margin-bottom: 70px;
