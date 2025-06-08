@@ -155,14 +155,8 @@ function ambilData() {
       window.location.href = "/public/index.html";
 
     }
-  });
-  logoutBtnHidebar.addEventListener("click", function () {
-    if (confirm("Yakin ingin logout?")) {
-      localStorage.removeItem("siswa");
-      window.location.href = "/public/index.html";
-
-    }
-  });
+  }
+ );
 });
 
 

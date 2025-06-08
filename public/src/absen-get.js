@@ -2,9 +2,20 @@ document.getElementById('absenForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   showLoading();
-  const nis = parseInt(document.getElementById('nis').value);
+
+  // Ambil nis dari localStorage
+  const siswa = JSON.parse(localStorage.getItem("siswa"));
+  if (!siswa || !siswa.nis) {
+    alert("NIS tidak ditemukan, silakan login dulu.");
+    hideLoading();
+    return;
+  }
+  const nis = siswa.nis;  // ambil NIS dari localStorage
+
   const status = document.getElementById('status').value;
   const tokenInput = document.getElementById('token').value.trim();
+
+  // sisa kode tetap sama...
   const tanggal = new Date();
   const formattedTanggal = `${tanggal.getDate().toString().padStart(2, '0')}-${(tanggal.getMonth() + 1).toString().padStart(2, '0')}-${tanggal.getFullYear()}`;
 

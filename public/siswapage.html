@@ -5,7 +5,7 @@
   <title>Persentase Sholat</title>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="/public/src/database.js"></script>
+   <script src="/public/src/database.js"></script>
 </head>
 <body>
   <h2>Persentase Sholat Siswa</h2>
@@ -15,8 +15,6 @@
     const urlParams = new URLSearchParams(window.location.search);
     const nis = urlParams.get("nis");
     const infoDiv = document.getElementById("infoPersentase");
-
-    console.log("NIS dari URL:", nis);
 
     async function hitungPersentase() {
       if (!nis) {
@@ -34,33 +32,24 @@
           return;
         }
 
-        const statusPerTanggal = new Map();
+        let sholat = 0, izin = 0, alpa = 0;
 
         snapshot.forEach((doc) => {
           const data = doc.data();
-          const tgl = data.tanggal;
           const status = data.status?.toLowerCase();
 
-          if (!statusPerTanggal.has(tgl)) {
-            statusPerTanggal.set(tgl, status);
-          }
-        });
-
-        let sholat = 0, izin = 0, alpa = 0;
-
-        for (const [tgl, status] of statusPerTanggal.entries()) {
           if (status === "sholat") sholat++;
           else if (status === "izin") izin++;
           else alpa++;
-        }
+        });
 
-        const totalHari = statusPerTanggal.size;
+        const total = sholat + izin + alpa;
         const persen = (jumlah) =>
-          totalHari > 0 ? ((jumlah / totalHari) * 100).toFixed(2) + "%" : "0.00%";
+          total > 0 ? ((jumlah / total) * 100).toFixed(2) + "%" : "0.00%";
 
         infoDiv.innerHTML = `
           <p>NIS: ${nis}</p>
-          <p>Total Hari: ${totalHari}</p>
+          <p>Total Data: ${total}</p>
           <p>Sholat: ${sholat} (${persen(sholat)})</p>
           <p>Izin: ${izin} (${persen(izin)})</p>
           <p>Alpa: ${alpa} (${persen(alpa)})</p>
@@ -71,7 +60,9 @@
       }
     }
 
+    // Jalankan fungsi
     hitungPersentase();
   </script>
+  
 </body>
 </html>
