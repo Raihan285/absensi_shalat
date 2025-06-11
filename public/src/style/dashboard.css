@@ -315,6 +315,10 @@ main {
 
 /* responsif */
 @media (min-width: 50px) {
+
+    .sidebar {
+        height: 100vh;
+    }
         header {
         display: none;
     }
@@ -452,6 +456,7 @@ main {
     }
     header {
         display: flex;
+        height: 100vh;
     }
     .botton-menu {
         display: none;
