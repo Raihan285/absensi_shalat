@@ -159,6 +159,16 @@ function ambilData() {
  );
 });
 
+  // Ambil elemen tbody
+const tbody = document.getElementById("data-siswa");
+
+// Hitung jumlah baris data (tr) di dalam tbody
+const jumlahBaris = tbody.querySelectorAll("tr").length;
+
+// Tampilkan hasilnya
+document.getElementsByClassName("totalSiswa").textContent = `Jumlah data: ${jumlahBaris}`;
+console.log(jumlahBaris)
+
 
 
 

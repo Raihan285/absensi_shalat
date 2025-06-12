@@ -133,7 +133,9 @@
                         <div class="two-circle"></div>
                         <div class="two-circle"></div>
                         <h4>XI Kendaraan Ringan 1</h4>
-                        <p>25 Siswa</p>
+                        <p id="jumlah-2">Loading...</p>
+
+<iframe class="iframeData" data-index="2" src="kelas/rpl/rplxdkv/rpldkv.html" style="display:none;"></iframe>
                     </div>
                     </a>
                     <a href="kelas/kr/xi/kr2.html" class="a-kelas">
@@ -157,7 +159,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>X Kendaraan Ringan 2</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"> 25 Siswa</p>
                         </div>
                     </a>
                 </div>
@@ -170,7 +172,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>XI Sepeda Motor</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                     <a href="kelas/sm/x/sm.html" class="a-kelas">
@@ -178,7 +180,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>X Sepeda Motor</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                 </div>
@@ -191,7 +193,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>XI Listrik dan Mesin</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                     <a href="kelas/listikmp/x/listrikmp.html" class="a-kelas">
@@ -199,7 +201,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>X Listrik dan Mesin</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                 </div>
@@ -212,7 +214,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>XI Teknik Komputer Jaringan 1</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                     <a href="kelas/tkj/xl/tkj2xdkv.html" class="a-kelas">
@@ -220,7 +222,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>XI Teknik Komputer Jaringan 2 dan Desain Komunikasi Visual</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                     <a href="kelas/tkj/x/tkj1.html" class="a-kelas">
@@ -228,7 +230,7 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>X Teknik Komputer Jaringan</h4>
-                            <p>25 Siswa</p>
+                            <p class="totalSiswa"></p>
                         </div>
                     </a>
                 </div>
@@ -241,7 +243,9 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>XI Rekayasa Perangkat Lunak</h4>
-                            <p>25 Siswa</p>
+                            <p id="jumlah-1">Loading...</p>
+
+<iframe class="iframeData" data-index="1" src="kelas/rpl/xl/rpl.html" style="display:none;"></iframe>
                         </div>
                     </a>
                     <a href="kelas/rpl/rplxdkv/rpldkv.html" class="a-kelas">
@@ -249,7 +253,9 @@
                             <div class="two-circle"></div>
                             <div class="two-circle"></div>
                             <h4>X Rekayasa Perangkat Lunak dan Desain Komunikasi Visual</h4>
-                            <p>25 Siswa</p>
+                            <p id="jumlah-2">Loading...</p>
+
+<iframe class="iframeData" data-index="2" src="kelas/rpl/rplxdkv/rpldkv.html" style="display:none;"></iframe>
                         </div>
                     </a>
                 </div>
@@ -260,4 +266,30 @@
 </body>
 
 <script src="src/index.js"></script>
+<script>
+ const iframes = document.querySelectorAll(".iframeData");
+
+  iframes.forEach((iframe) => {
+    const index = iframe.dataset.index; // Ambil angka index dari data-index
+
+    iframe.onload = function () {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+      const interval = setInterval(() => {
+        const tbody = doc.getElementById("data-siswa");
+        if (tbody) {
+          const rows = tbody.querySelectorAll("tr");
+          if (rows.length > 0) {
+            clearInterval(interval);
+
+            const jumlahElement = document.getElementById(`jumlah-${index}`);
+            if (jumlahElement) {
+              jumlahElement.textContent = `Jumlah Data: ${rows.length}`;
+            }
+          }
+        }
+      }, 200);
+    };
+  });
+</script>
 </html>
