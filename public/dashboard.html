@@ -282,7 +282,7 @@
  const iframes = document.querySelectorAll(".iframeData");
 
   iframes.forEach((iframe) => {
-    const index = iframe.dataset.index; // Ambil angka index dari data-index
+    const index = iframe.dataset.index // Ambil angka index dari data-index
 
     iframe.onload = function () {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
