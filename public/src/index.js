@@ -99,7 +99,7 @@ function ambilData() {
           <tr>
             <td>${no++}</td>
             <td>${nis}</td>
-            <td>${siswa.nama}</td>
+            <td><a href ="/public/siswapage.html?nis=${nis}"style =" color:black;">${siswa.nama}</a></td>
             <td><div class="Status-sholat"><p>${persen(sholat)}</p></div></td>
             <td><div class="Status-izin"><p>${persen(izin)}</p></div></td>
             <td><div class="Status-alpa"><p>${persen(alpa)}</p></div></td>
