@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="src/style/daftarabsen.css">
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="/public/src/database.js"></script>
-  <script src="/public/src/index.js"></script>
+  <script src="src/database.js"></script>
 </head>
 <body>
    <header>
@@ -56,34 +55,30 @@
                 </div>
         </nav>
     </header>
-    
     <main>
-        <div class="nav-header">
-            <div style="color: black;">
-                <h2 style="font-size: 24px;">Dashboard</h2>
-                <p style="color: rgba(0, 0, 0, 0.556);">Daftar absen siswa</p>
-            </div>
+     <div class="nav-header">
+      <div style="color: black;">
+        <h2 style="font-size: 24px;">Leaderboard</h2>
+        <p style="color: rgba(0, 0, 0, 0.556);">Leaderboard Salat Siswa</p>
+      </div>
 
-            <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
-                <div style="color: black;" class="search">
-                    <input type="search" placeholder="Cari Siswa">
-                </div>
-                <div class="header-2">
-                    <div class="circle">
-                        <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="image/rekapitulasi.png" alt="">
-                    </div>
-                    <div id="siswa-widget" class="identitas">
+      <div style="display: flex; align-items: center; gap: 40px; padding-right: 20px;">
+        
+        <div class="header-2">
+          <div class="circle">
+            <img width="30px" height="30px" style="z-index: 100; padding: 6px 8px;" src="image/rekapitulasi.png" alt="">
+          </div>
+          <div id="siswa-widget" class="identitas">
              <span id="siswa-info"></span>
              <button id="logoutBtn" class="logout">Logout</button>
           </div> 
-                </div>
-                <div>
+        </div>
+        <div>
                     <img class="botton-menu" onclick="showSidebar()" src="image/menu_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="">
                 </div>
-            </div>
-        </div>
-
-        <nav class="sidebar" onclick="hideSidebar()">
+      </div>
+    </div>
+    <nav class="sidebar" onclick="hideSidebar()">
             <div class="header">
                 <div class="indentitias1 identitas" id="siswa-widget1" style="background-color: #7cb4386c;">
                     <span id="siswa-info1"></span>
@@ -163,6 +158,7 @@
   100% { transform: rotate(360deg); }
 }
 </style>
+<script src="src/index.js"></script>
   <script>
     async function loadLeaderboard() {
         showLoading();
