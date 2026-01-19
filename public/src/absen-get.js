@@ -59,7 +59,8 @@ const tokenDoc = await db.collection("token_absen").doc(formattedDate).get();
     try {
       document.getElementById("preview").src = imageBase64;
 
-      const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dqoo5xojd/image/upload";
+      const cloudname = "del06";
+      const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloudname}/image/upload`;
       const uploadPreset = "absenImage";
 
       const formData = new FormData();
